@@ -4,12 +4,15 @@ import Cookie from "universal-cookie";
 
 const cookie = new Cookie();
 
-export default function Auth() {
+export default function Auth({ title }) {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-
+  const modeHandler = () => {
+    setIsLogin(!isLogin)
+    title(!isLogin)
+  }
   const login = async () => {
     try {
       await fetch(
@@ -111,7 +114,7 @@ export default function Auth() {
         <div className="flex items-center justify-center">
           <div className="text-sm">
             <span
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => { modeHandler() }}
               className="cursor-pointer font-medium text-white hover:text-indigo-500"
             >
               change mode ?
