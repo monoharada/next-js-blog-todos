@@ -1,6 +1,5 @@
-import Head from 'next/head'
-export default function  Layout ({children,title='default titleß'}){
-
+import Head from "next/head";
+export default function Layout({ children, title = "default titleß" }) {
   return (
     <div className="flex justify-center items-center flex-col min-h-screen text-white font-mono bg-gray-800">
       <Head>
@@ -13,7 +12,5 @@ export default function  Layout ({children,title='default titleß'}){
         copy 2021
       </footer>
     </div>
-  )
-  
+  );
 }
-
