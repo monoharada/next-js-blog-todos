@@ -1,10 +1,15 @@
-import React from 'react'
 import Layout from '../components/Layout'
 import Link from 'next/link';
+import { getAllPostsData } from '../lib/posts';
+import Post from '../components/Post';
 
-const blogPage = () => {
+const blogPage = ({ filteredPosts }) => {
   return (
     <Layout title="blog page">
+      <ul>
+        {filteredPosts &&
+          filteredPosts.map((post) => <Post key={post.id} post={post} />)}
+      </ul>
       <Link href="/main-page">
         <div className="flex cursor-pointer mt-12">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,3 +23,10 @@ const blogPage = () => {
 }
 
 export default blogPage
+
+export async function getStaticProps() {
+  const filteredPosts = await getAllPostsData()
+  return {
+    props: { filteredPosts }
+  }
+}
